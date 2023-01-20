@@ -21,6 +21,7 @@ export const useContainer = (): IProps => {
         new_list.push(values.title);
         set_todo_list(new_list);
         localStorage.setItem("todo list", JSON.stringify(new_list));
+        formik.values.title="";
     }
 
     const handler_discard = () => {
