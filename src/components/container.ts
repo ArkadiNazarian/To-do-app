@@ -21,12 +21,14 @@ export const useContainer = (): IProps => {
         new_list.push(values.title);
         set_todo_list(new_list);
         localStorage.setItem("todo list", JSON.stringify(new_list));
-        formik.values.title="";
+        formik.values.title = "";
     }
 
     const handler_discard = () => {
         set_todo_list([]);
+        set_done_list([]);
         localStorage.setItem("todo list", JSON.stringify([]));
+        localStorage.setItem("done list", JSON.stringify([]));
     }
 
     const handler_remove_item = (id: number) => {
@@ -34,11 +36,11 @@ export const useContainer = (): IProps => {
             index !== id
         ))
         set_todo_list(modified_list);
-        localStorage.setItem("list", JSON.stringify(modified_list));
+        localStorage.setItem("todo list", JSON.stringify(modified_list));
     }
 
-    const handler_item_done=(id: number)=>{
-        const modified_done_list=[...done_list]
+    const handler_item_done = (id: number) => {
+        const modified_done_list = [...done_list]
         const my_done_list = todo_list.filter((value, index) => (
             index === id
         ))
@@ -51,13 +53,15 @@ export const useContainer = (): IProps => {
             index !== id
         ))
         set_todo_list(modified_list);
-        localStorage.setItem("list", JSON.stringify(modified_list));
-        
+        localStorage.setItem("todo list", JSON.stringify(modified_list));
+
     }
 
     useEffect(() => {
-        const modified_list = JSON.parse(localStorage.getItem("list")!)
-        set_todo_list(modified_list)
+        const saved_todo_list = JSON.parse(localStorage.getItem("todo list")!);
+        set_todo_list(saved_todo_list);
+        const saved_done_list = JSON.parse(localStorage.getItem("done list")!);
+        set_done_list(saved_done_list);
     }, [])
 
     const formik = useFormik({
@@ -72,6 +76,7 @@ export const useContainer = (): IProps => {
         handleChange: formik.handleChange,
         handler_discard: handler_discard,
         todo_list,
+        done_list,
         handler_remove_item,
         handler_item_done
     }
