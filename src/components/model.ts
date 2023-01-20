@@ -3,7 +3,7 @@ export interface IFormValues {
 }
 
 export interface IProps {
-    list: Array<string>;
+    todo_list: Array<string>;
     action_add: () => void;
     form_data: IFormValues;
     handleChange: (e: any) => void;
