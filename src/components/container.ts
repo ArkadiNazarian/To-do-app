@@ -58,10 +58,15 @@ export const useContainer = (): IProps => {
     }
 
     useEffect(() => {
-        const saved_todo_list = JSON.parse(localStorage.getItem("todo list")!);
-        set_todo_list(saved_todo_list);
-        const saved_done_list = JSON.parse(localStorage.getItem("done list")!);
-        set_done_list(saved_done_list);
+        if (localStorage.getItem("todo list")) {
+            const saved_todo_list = JSON.parse(localStorage.getItem("todo list")!);
+            set_todo_list(saved_todo_list);
+        }
+        if (localStorage.getItem("done list")) {
+            const saved_done_list = JSON.parse(localStorage.getItem("done list")!);
+            set_done_list(saved_done_list);
+        }
+
     }, [])
 
     const formik = useFormik({
