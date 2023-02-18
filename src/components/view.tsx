@@ -7,7 +7,7 @@ import { FaListUl } from "react-icons/fa";
 import { AiTwotoneEdit } from "react-icons/ai";
 
 export const View = (props: IProps) => (
-    <div className="tw-grid tw-grid-cols-2 tw-p-10">
+    <div className="md:tw-grid md:tw-grid-cols-2 tw-p-10 tw-h-[89vh]">
         <div className="tw-col-start-1">
             <div className="tw-flex tw-flex-row tw-items-center">
                 <FaListUl className="tw-text-custom_green tw-text-2xl" />
@@ -17,6 +17,7 @@ export const View = (props: IProps) => (
                 <div className="tw-flex tw-flex-row tw-items-center">
                     <textarea name="title" value={props.form_data.title} onChange={props.handleChange} className="tw-bg-custom_blue tw-w-52 tw-h-6 focus:tw-outline-none tw-border-none tw-rounded-md tw-text-white tw-p-1" />
                     <button type="submit" className="tw-cursor-pointer tw-bg-custom_blue tw-border-none tw-text-white tw-text-lg tw-pl-3 tw-pr-2 tw-pt-1 tw-rounded-md tw-ml-4"><AiOutlinePlus /></button>
+                    <button type="button" onClick={() => props.handler_discard()} className="tw-cursor-pointer tw-mt-4 tw-bg-custom_red tw-border-none tw-text-white tw-text-sm tw-rounded-lg tw-p-1 tw-ml-2 tw-mb-2">Clear All</button>
                 </div>
             </form>
             {
@@ -35,11 +36,9 @@ export const View = (props: IProps) => (
                     </div>
                 ))
             }
-            <button type="button" onClick={() => props.handler_discard()} className="tw-cursor-pointer tw-mt-4 tw-bg-custom_red tw-border-none tw-text-white tw-text-sm tw-rounded-lg tw-p-1">Clear All</button>
         </div>
         <div className="tw-col-start-2">
-
-            <div className={props.todo_list.length !== 0 ? "tw-flex tw-flex-row tw-items-center" : "tw-hidden"}>
+            <div className={props.todo_list.length !== 0 ? "tw-flex tw-flex-row tw-items-center tw-mb-12" : "tw-hidden"}>
                 <GoChecklist className="tw-text-custom_green tw-text-2xl" />
                 <p className="tw-ml-2 tw-text-2xl tw-text-white">DONE LIST</p>
             </div>
@@ -59,6 +58,9 @@ export const View = (props: IProps) => (
                     </div>
                 ))
             }
+        </div>
+        <div className="tw-mt-96">
+            <p className="tw-text-sm tw-text-white">Developed by Arkadi Nazarian</p>
         </div>
     </div>
 )
