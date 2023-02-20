@@ -28,7 +28,7 @@ export const useContainer = (): IProps => {
         formik.values.title = "";
     }
 
-    const handler_discard = () => {
+    const handler_remove_all = () => {
         set_todo_list([]);
         localStorage.setItem("list", JSON.stringify([]));
     }
@@ -90,7 +90,7 @@ export const useContainer = (): IProps => {
         action_add: formik.handleSubmit,
         form_data: formik.values,
         handleChange: formik.handleChange,
-        handler_discard: handler_discard,
+        handler_remove_all,
         todo_list,
         handler_remove_item,
         handler_item_done,
