@@ -13,11 +13,11 @@ export const View = (props: IProps) => (
                 <FaListUl className="tw-text-custom_green tw-text-2xl" />
                 <p className="tw-ml-2 tw-text-2xl tw-text-white">TODO LIST</p>
             </div>
-            <form onSubmit={props.action_add}>
+            <form onSubmit={props.action_submit}>
                 <div className="tw-flex tw-flex-row tw-items-center">
                     <textarea name="title" value={props.form_data.title} onChange={props.handleChange} className="tw-bg-custom_blue tw-w-52 tw-h-6 focus:tw-outline-none tw-border-none tw-rounded-md tw-text-white tw-p-1" />
                     <button type="submit" className="tw-cursor-pointer tw-bg-custom_blue tw-border-none tw-text-white tw-text-lg tw-pl-3 tw-pr-2 tw-pt-1 tw-rounded-md tw-ml-4"><AiOutlinePlus /></button>
-                    <button type="button" onClick={() => props.handler_discard()} className="tw-cursor-pointer tw-mt-4 tw-bg-custom_red tw-border-none tw-text-white tw-text-sm tw-rounded-lg tw-p-1 tw-ml-2 tw-mb-2">Clear All</button>
+                    <button type="button" onClick={() => props.handler_remove_all()} className="tw-cursor-pointer tw-mt-4 tw-bg-custom_red tw-border-none tw-text-white tw-text-sm tw-rounded-lg tw-p-1 tw-ml-2 tw-mb-2">Clear All</button>
                 </div>
             </form>
             {

@@ -28,7 +28,11 @@ export const useContainer = (): IProps => {
         formik.values.title = "";
     }
 
-    const handler_discard = () => {
+    const action_submit = (values: IFormValues) => {
+        action_add(values)
+    }
+
+    const handler_remove_all = () => {
         set_todo_list([]);
         localStorage.setItem("list", JSON.stringify([]));
     }
@@ -48,13 +52,14 @@ export const useContainer = (): IProps => {
 
         const delete_modified_object = modified_done_list.filter((value, index) => index !== id);
 
+        if (!set_done?.title) return
         const my_list = {
-            title: set_done!.title,
+            title: set_done.title,
             done: true
         };
 
-        delete_modified_object.push(my_list);
-
+        delete_modified_object.unshift(my_list);
+        console.log(delete_modified_object)
         set_todo_list(delete_modified_object);
 
         localStorage.setItem("list", JSON.stringify(delete_modified_object));
@@ -65,8 +70,8 @@ export const useContainer = (): IProps => {
         const modified_done_list = [...todo_list];
 
         const set_done = modified_done_list.find((value, index) => index === id);
-        
-        formik.setFieldValue("title",set_done?.title);
+
+        formik.setFieldValue("title", set_done?.title);
 
         const erase_modified_object = modified_done_list.filter((value, index) => index !== id);
 
@@ -83,14 +88,15 @@ export const useContainer = (): IProps => {
     const formik = useFormik({
         initialValues: initial_value,
         validationSchema: validation_schema,
-        onSubmit: action_add
+        onSubmit: action_submit
     });
 
     return {
-        action_add: formik.handleSubmit,
+        action_add,
+        action_submit: formik.handleSubmit,
         form_data: formik.values,
         handleChange: formik.handleChange,
-        handler_discard: handler_discard,
+        handler_remove_all,
         todo_list,
         handler_remove_item,
         handler_item_done,
