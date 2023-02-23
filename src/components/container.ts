@@ -67,15 +67,15 @@ export const useContainer = (): IProps => {
     }
 
     const handler_onEdit_item = (id: number) => {
-        const modified_done_list = [...todo_list];
+        const my_list = [...todo_list];
 
-        const set_done = modified_done_list.find((value, index) => index === id);
+        const set_edit = my_list.find((value, index) => index === id);
+        
+        formik.setFieldValue("title",set_edit?.title);
 
-        formik.setFieldValue("title", set_done?.title);
+        const filtered_object = my_list.filter((value, index) => index !== id);
 
-        const erase_modified_object = modified_done_list.filter((value, index) => index !== id);
-
-        set_todo_list(erase_modified_object);
+        set_todo_list(filtered_object);
     }
 
     useEffect(() => {

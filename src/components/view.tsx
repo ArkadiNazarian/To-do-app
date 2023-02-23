@@ -59,8 +59,5 @@ export const View = (props: IProps) => (
                 ))
             }
         </div>
-        <div className="tw-mt-96">
-            <p className="tw-text-sm tw-text-white">Developed by Arkadi Nazarian</p>
-        </div>
     </div>
 )
